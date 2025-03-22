@@ -1,4 +1,5 @@
 "use client";
+import { t } from "@/locales/en";
 import { useState, useEffect } from "react";
 
 const TimerComponent = () => {
@@ -22,7 +23,10 @@ const TimerComponent = () => {
   }, [time]);
 
   return (
-    <div>Time Elapsed since January 1st 1970: {Math.round(time / 10000)}</div>
+    <div>
+      {t.timeElapsed}
+      {Math.round(time / 10000)}
+    </div>
   );
 };
 

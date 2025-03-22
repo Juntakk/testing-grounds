@@ -1,3 +1,4 @@
+import { t } from "@/locales/en";
 import { Home, Shapes, Trophy, ZapIcon } from "lucide-react";
 
 const Layout1 = () => {
@@ -25,7 +26,7 @@ const Layout1 = () => {
           </div>
           <div className="bg-zinc-400 flex flex-col items-center justify-center p-4 text-white">
             <Trophy size={30} />
-            <p>Country</p>
+            <p>{t.country}</p>
           </div>
           <div className="bg-zinc-400 flex flex-col items-center justify-center p-4 text-white">
             <Shapes size={30} />
