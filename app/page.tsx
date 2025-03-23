@@ -24,11 +24,12 @@ export default function Home() {
       >
         Timer
       </Link>
+
       <Link
         className="w-screen flex justify-center py-10"
-        href={"/tests/timer"}
+        href={"/tests/meals"}
       >
-        Timer
+        Meals
       </Link>
     </div>
   );
