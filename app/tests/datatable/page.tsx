@@ -1,7 +1,11 @@
 import { DataTableDemo } from "@/components/DataTable";
 
 const DataTablePage = () => {
-  return <DataTableDemo />;
+  return (
+    <div className=" w-full">
+      <DataTableDemo />
+    </div>
+  );
 };
 
 export default DataTablePage;

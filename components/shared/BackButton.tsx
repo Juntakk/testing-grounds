@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 const BackButton = () => {
   return (
-    <Button className="mb-10">
+    <Button asChild variant="back" className="absolute left-10 top-10 mb-10">
       <Link href={"/"}>Back home</Link>
     </Button>
   );

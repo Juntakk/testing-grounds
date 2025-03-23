@@ -6,7 +6,7 @@ export default function TestsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="w-screen h-screen flex flex-col items-center justify-center">
+    <section className="w-full h-screen flex flex-col items-center justify-center">
       <BackButton />
       {children}
     </section>

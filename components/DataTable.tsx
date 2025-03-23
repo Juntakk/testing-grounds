@@ -158,8 +158,8 @@ export function DataTableDemo() {
   });
 
   return (
-    <div className="w-full">
-      <div className="flex items-center py-4">
+    <div className="px-20 pt-40">
+      <div className="flex items-center py-4 mt-20">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -170,7 +170,7 @@ export function DataTableDemo() {
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-auto mt-4">
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>

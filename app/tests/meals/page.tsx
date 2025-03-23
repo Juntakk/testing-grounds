@@ -78,7 +78,7 @@ const MealsPage = () => {
           <div className="w-full rounded-lg border bg-card shadow-sm p-4">
             <div className="flex flex-col md:flex-row gap-6">
               <Skeleton className="h-[200px] w-full md:w-[200px] rounded-full bg-zinc-800" />
-              <div className="flex-1 space-y-4">
+              <div className="flex-1 space-y-4 mt-6">
                 <Skeleton className="h-8 w-3/4 bg-zinc-800" />
                 <div className="flex gap-2">
                   <Skeleton className="h-5 w-20 bg-zinc-800" />
