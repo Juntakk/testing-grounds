@@ -2,7 +2,7 @@
 import { t } from "@/locales/en";
 import { useState, useEffect } from "react";
 
-const TimerComponent = () => {
+const Timer = () => {
   const [time, setTime] = useState<number>(0);
 
   useEffect(() => {
@@ -25,9 +25,9 @@ const TimerComponent = () => {
   return (
     <div>
       {t.timeElapsed}
-      {Math.round(time / 10000)}
+      {Math.round(time)}
     </div>
   );
 };
 
-export default TimerComponent;
+export default Timer;

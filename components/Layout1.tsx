@@ -1,45 +1,181 @@
-import { t } from "@/locales/en";
-import { Home, Shapes, Trophy, ZapIcon } from "lucide-react";
+import {
+  Home,
+  Shapes,
+  Trophy,
+  Zap,
+  BarChart3,
+  Users,
+  Calendar,
+  Settings,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-const Layout1 = () => {
+export default function BlockLayout() {
   return (
-    <div className="flex flex-wrap justify-evenly min-w-full min-h-screen bg-card py-6">
-      <div className="flex flex-col w-full sm:w-1/4">
-        <div className="h-2/3 bg-zinc-400 mb-2 flex items-center justify-center text-white text-xl font-bold">
-          Contact Info
+    <div className="container mx-auto py-8 px-4">
+      <h2 className="text-3xl font-bold tracking-tight mb-6">
+        Dashboard Overview
+      </h2>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Left Column */}
+        <div className="lg:col-span-3 space-y-6">
+          <Card className="h-[300px]">
+            <CardHeader>
+              <CardTitle>Activity</CardTitle>
+              <CardDescription>Your recent activity</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+                    <div className="h-full bg-primary w-[75%]" />
+                  </div>
+                  <span className="text-sm font-medium">75%</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+                    <div className="h-full bg-primary w-[45%]" />
+                  </div>
+                  <span className="text-sm font-medium">45%</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+                    <div className="h-full bg-primary w-[90%]" />
+                  </div>
+                  <span className="text-sm font-medium">90%</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 gap-2">
+                <button className="flex flex-col items-center justify-center p-4 rounded-lg bg-muted hover:bg-muted/80 transition-colors">
+                  <Home className="h-6 w-6 mb-2" />
+                  <span className="text-xs font-medium">Home</span>
+                </button>
+                <button className="flex flex-col items-center justify-center p-4 rounded-lg bg-muted hover:bg-muted/80 transition-colors">
+                  <Settings className="h-6 w-6 mb-2" />
+                  <span className="text-xs font-medium">Settings</span>
+                </button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-        <div className="h-1/3 bg-zinc-400 flex items-center justify-center text-white text-xl font-bold">
-          Activation Button
+
+        {/* Center Column */}
+        <div className="lg:col-span-6">
+          <Card className="h-full">
+            <CardHeader>
+              <CardTitle>Performance Overview</CardTitle>
+              <CardDescription>Monthly statistics</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[300px] flex items-end justify-between gap-2 pt-10 px-2">
+                {[40, 25, 60, 75, 45, 90, 65, 30, 50, 70, 55, 80].map(
+                  (height, i) => (
+                    <div key={i} className="relative group">
+                      <div
+                        className="w-5 bg-primary rounded-t-sm transition-all duration-300 group-hover:bg-primary/80"
+                        style={{ height: `${height}%` }}
+                      />
+                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-popover text-popover-foreground text-xs px-2 py-1 rounded shadow">
+                        {height}%
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+              <div className="flex justify-between mt-4 text-xs text-muted-foreground">
+                <span>Jan</span>
+                <span>Feb</span>
+                <span>Mar</span>
+                <span>Apr</span>
+                <span>May</span>
+                <span>Jun</span>
+                <span>Jul</span>
+                <span>Aug</span>
+                <span>Sep</span>
+                <span>Oct</span>
+                <span>Nov</span>
+                <span>Dec</span>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </div>
-      <div className="w-full sm:w-1/3 min-h-2xl bg-zinc-400 flex items-center justify-center text-white text-2xl font-bold">
-        Dashboard
-      </div>
-      <div className="flex flex-col w-full sm:w-1/4">
-        <div className="h-1/2 bg-zinc-400 mb-2 flex items-center justify-center text-white text-xl font-bold">
-          Map
-        </div>
-        <div className="grid grid-cols-2 gap-2 h-1/2">
-          <div className="bg-zinc-400 flex flex-col items-center justify-center p-4 text-white">
-            <Home size={30} />
-            <p>City</p>
-          </div>
-          <div className="bg-zinc-400 flex flex-col items-center justify-center p-4 text-white">
-            <Trophy size={30} />
-            <p>{t.country}</p>
-          </div>
-          <div className="bg-zinc-400 flex flex-col items-center justify-center p-4 text-white">
-            <Shapes size={30} />
-            <p>State</p>
-          </div>
-          <div className="bg-zinc-400 flex flex-col items-center justify-center p-4 text-white">
-            <ZapIcon size={30} />
-            <p>Zip Code</p>
-          </div>
+
+        {/* Right Column */}
+        <div className="lg:col-span-3 space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Summary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Users className="h-4 w-4 mr-2 text-muted-foreground" />
+                    <span className="text-sm">Total Users</span>
+                  </div>
+                  <span className="font-medium">1,248</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <BarChart3 className="h-4 w-4 mr-2 text-muted-foreground" />
+                    <span className="text-sm">Revenue</span>
+                  </div>
+                  <span className="font-medium">$24,780</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                    <span className="text-sm">Projects</span>
+                  </div>
+                  <span className="font-medium">32</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Stats</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { icon: Trophy, label: "Awards", value: "12" },
+                  { icon: Shapes, label: "Projects", value: "36" },
+                  { icon: Zap, label: "Energy", value: "85%" },
+                  { icon: Home, label: "Visits", value: "2.4k" },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-muted rounded-lg p-3 flex flex-col items-center justify-center"
+                  >
+                    <item.icon className="h-5 w-5 mb-1 text-primary" />
+                    <span className="text-xs text-muted-foreground">
+                      {item.label}
+                    </span>
+                    <span className="font-medium text-sm">{item.value}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
   );
-};
-
-export default Layout1;
+}

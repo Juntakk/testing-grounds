@@ -1,15 +1,29 @@
-import { DataTableDemo } from "@/components/DataTable";
-import Layout1 from "@/components/Layout1";
-import PaginationComponent from "@/components/PaginationComponent";
-import TimerComponent from "@/components/Timer";
-
+import Link from "next/link";
+import "@/app/globals.css";
 export default function Home() {
   return (
     <div>
-      <TimerComponent />
-      <DataTableDemo />
-      <Layout1 />
-      <PaginationComponent />
+      <Link className="w-screen flex justify-center py-10" href={"/tests/game"}>
+        Random Game
+      </Link>
+      <Link
+        className="w-screen flex justify-center py-10"
+        href={"/tests/datatable"}
+      >
+        Data Table Demo
+      </Link>
+      <Link
+        className="w-screen flex justify-center py-10"
+        href={"/tests/layouts"}
+      >
+        Layouts
+      </Link>
+      <Link
+        className="w-screen flex justify-center py-10"
+        href={"/tests/timer"}
+      >
+        Timer
+      </Link>
     </div>
   );
 }
