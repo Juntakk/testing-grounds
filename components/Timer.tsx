@@ -9,23 +9,32 @@ const Timer = () => {
     setTime(Date.now());
   }, []);
 
-  useEffect(() => {
-    if (time !== null) {
-      const updateTimer = () => {
-        setTime((prev) => prev! + 1000);
-        setTimeout(updateTimer, 1000);
-      };
+  //   useEffect(() => {
+  //     if (time !== null) {
+  //       const updateTimer = () => {
+  //         setTime((prev) => prev! + 1000);
+  //         setTimeout(updateTimer, 1000);
+  //       };
 
-      const timer = setTimeout(updateTimer, 1000);
+  //       const timer = setTimeout(updateTimer, 1000);
 
-      return () => clearTimeout(timer);
-    }
-  }, [time]);
+  //       return () => clearTimeout(timer);
+  //     }
+  //   }, [time]);
+
+  const formatTime = (milliseconds: number) => {
+    const seconds = milliseconds / 1000;
+    const remainingMinutes = milliseconds - seconds / 60;
+    const hours = remainingMinutes / 60;
+    const days = hours / 24;
+
+    return "";
+  };
 
   return (
     <div>
       {t.timeElapsed}
-      {Math.round(time)}
+      {formatTime(time)}
     </div>
   );
 };
