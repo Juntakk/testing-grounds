@@ -3,38 +3,57 @@ import { t } from "@/locales/en";
 import { useState, useEffect } from "react";
 
 const Timer = () => {
-  const [time, setTime] = useState<number>(0);
+  const [time, setTime] = useState<number>(
+    Date.now() - new Date(1970, 0, 1).getTime()
+  );
 
   useEffect(() => {
-    setTime(Date.now());
+    const updateTimer = () => {
+      setTime(Date.now() - new Date(1970, 0, 1).getTime());
+    };
+
+    const timer = setInterval(updateTimer, 1000);
+    return () => clearInterval(timer);
   }, []);
 
-  //   useEffect(() => {
-  //     if (time !== null) {
-  //       const updateTimer = () => {
-  //         setTime((prev) => prev! + 1000);
-  //         setTimeout(updateTimer, 1000);
-  //       };
-
-  //       const timer = setTimeout(updateTimer, 1000);
-
-  //       return () => clearTimeout(timer);
-  //     }
-  //   }, [time]);
-
   const formatTime = (milliseconds: number) => {
-    const seconds = milliseconds / 1000;
-    const remainingMinutes = milliseconds - seconds / 60;
-    const hours = remainingMinutes / 60;
-    const days = hours / 24;
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const totalDays = Math.floor(totalHours / 24);
 
-    return "";
+    const currentDate = new Date();
+    const startDate = new Date(1970, 0, 1);
+
+    let years = currentDate.getFullYear() - startDate.getFullYear();
+    let months = currentDate.getMonth() - startDate.getMonth();
+    let days = currentDate.getDate() - startDate.getDate();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const seconds = currentDate.getSeconds();
+
+    if (days < 0) {
+      months--;
+      const prevMonth = (currentDate.getMonth() - 1 + 12) % 12;
+      const daysInPrevMonth = new Date(
+        currentDate.getFullYear(),
+        prevMonth + 1,
+        0
+      ).getDate();
+      days += daysInPrevMonth;
+    }
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    return `${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
   };
 
   return (
     <div>
-      {t.timeElapsed}
-      {formatTime(time)}
+      {t.timeElapsed}: {formatTime(time)}
     </div>
   );
 };
