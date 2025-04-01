@@ -15,18 +15,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import BarChartOne from "./BarChartOne";
 
 export default function BlockLayout() {
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h2 className="text-3xl font-bold tracking-tight mb-6">
+    <div className="container px-48 p-8 shadow-md rounded-lg">
+      <h2 className="text-3xl font-bold tracking-tight mb-6 text-center">
         Dashboard Overview
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column */}
         <div className="lg:col-span-3 space-y-6">
-          <Card className="h-[300px]">
+          <Card className="h-[300px] bg-gray-700">
             <CardHeader>
               <CardTitle>Activity</CardTitle>
               <CardDescription>Your recent activity</CardDescription>
@@ -34,19 +35,19 @@ export default function BlockLayout() {
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-gray-600 rounded-full overflow-hidden">
                     <div className="h-full bg-primary w-[75%]" />
                   </div>
                   <span className="text-sm font-medium">75%</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-gray-600 rounded-full overflow-hidden">
                     <div className="h-full bg-primary w-[45%]" />
                   </div>
                   <span className="text-sm font-medium">45%</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+                  <div className="h-2 w-full bg-gray-600 rounded-full overflow-hidden">
                     <div className="h-full bg-primary w-[90%]" />
                   </div>
                   <span className="text-sm font-medium">90%</span>
@@ -55,18 +56,18 @@ export default function BlockLayout() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gray-700">
             <CardHeader>
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 gap-2">
-                <button className="flex flex-col items-center justify-center p-4 rounded-lg bg-muted hover:bg-muted/80 transition-colors">
-                  <Home className="h-6 w-6 mb-2" />
+                <button className="flex flex-col items-center justify-center p-4 rounded-lg bg-gray-600 hover:bg-gray-500 transition-colors">
+                  <Home className="h-6 w-6 mb-2 text-white" />
                   <span className="text-xs font-medium">Home</span>
                 </button>
-                <button className="flex flex-col items-center justify-center p-4 rounded-lg bg-muted hover:bg-muted/80 transition-colors">
-                  <Settings className="h-6 w-6 mb-2" />
+                <button className="flex flex-col items-center justify-center p-4 rounded-lg bg-gray-600 hover:bg-gray-500 transition-colors">
+                  <Settings className="h-6 w-6 mb-2 text-white" />
                   <span className="text-xs font-medium">Settings</span>
                 </button>
               </div>
@@ -76,48 +77,20 @@ export default function BlockLayout() {
 
         {/* Center Column */}
         <div className="lg:col-span-6">
-          <Card className="h-full">
+          <Card className="h-full bg-gray-700">
             <CardHeader>
               <CardTitle>Performance Overview</CardTitle>
               <CardDescription>Monthly statistics</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-[300px] flex items-end justify-between gap-2 pt-10 px-2">
-                {[40, 25, 60, 75, 45, 90, 65, 30, 50, 70, 55, 80].map(
-                  (height, i) => (
-                    <div key={i} className="relative group">
-                      <div
-                        className="w-5 bg-primary rounded-t-sm transition-all duration-300 group-hover:bg-primary/80"
-                        style={{ height: `${height}%` }}
-                      />
-                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-popover text-popover-foreground text-xs px-2 py-1 rounded shadow">
-                        {height}%
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-              <div className="flex justify-between mt-4 text-xs text-muted-foreground">
-                <span>Jan</span>
-                <span>Feb</span>
-                <span>Mar</span>
-                <span>Apr</span>
-                <span>May</span>
-                <span>Jun</span>
-                <span>Jul</span>
-                <span>Aug</span>
-                <span>Sep</span>
-                <span>Oct</span>
-                <span>Nov</span>
-                <span>Dec</span>
-              </div>
+              <BarChartOne />
             </CardContent>
           </Card>
         </div>
 
         {/* Right Column */}
         <div className="lg:col-span-3 space-y-6">
-          <Card>
+          <Card className="bg-gray-700">
             <CardHeader>
               <CardTitle>Summary</CardTitle>
             </CardHeader>
@@ -125,21 +98,21 @@ export default function BlockLayout() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Users className="h-4 w-4 mr-2 text-muted-foreground" />
+                    <Users className="h-4 w-4 mr-2 text-gray-400" />
                     <span className="text-sm">Total Users</span>
                   </div>
                   <span className="font-medium">1,248</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <BarChart3 className="h-4 w-4 mr-2 text-muted-foreground" />
+                    <BarChart3 className="h-4 w-4 mr-2 text-gray-400" />
                     <span className="text-sm">Revenue</span>
                   </div>
                   <span className="font-medium">$24,780</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
+                    <Calendar className="h-4 w-4 mr-2 text-gray-400" />
                     <span className="text-sm">Projects</span>
                   </div>
                   <span className="font-medium">32</span>
@@ -148,7 +121,7 @@ export default function BlockLayout() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gray-700">
             <CardHeader>
               <CardTitle>Quick Stats</CardTitle>
             </CardHeader>
@@ -162,12 +135,10 @@ export default function BlockLayout() {
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className="bg-muted rounded-lg p-3 flex flex-col items-center justify-center"
+                    className="bg-gray-600 rounded-lg p-3 flex flex-col items-center justify-center"
                   >
                     <item.icon className="h-5 w-5 mb-1 text-primary" />
-                    <span className="text-xs text-muted-foreground">
-                      {item.label}
-                    </span>
+                    <span className="text-xs text-gray-400">{item.label}</span>
                     <span className="font-medium text-sm">{item.value}</span>
                   </div>
                 ))}

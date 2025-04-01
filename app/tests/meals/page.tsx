@@ -50,7 +50,7 @@ const MealsPage = () => {
         <Button
           onClick={handleRandomMealFetch}
           size="lg"
-          className="min-w-[180px]"
+          className="min-w-[180px] bg-zinc-800"
           disabled={isPending}
         >
           {isPending ? (
