@@ -1,0 +1,59 @@
+<VirtualHost *:80>
+    # The ServerName directive sets the request scheme, hostname and port that
+    # the server uses to identify itself. This is used when creating
+    # redirection URLs. In the context of virtual hosts, the ServerName
+    # specifies what hostname must appear in the request's Host: header to
+    # match this virtual host. For the default virtual host (this file) this
+    # value is not decisive as it is used as a last resort host regardless.
+    # However, you must set it for any further virtual host explicitly.
+    ServerName dev.ats-ibis.com
+
+    ServerAdmin support@ultra-ft.com
+    DocumentRoot /var/www/html
+
+    # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+    # error, crit, alert, emerg.
+    # It is also possible to configure the loglevel for particular
+    # modules, e.g.
+    #LogLevel info ssl:warn
+
+    CustomLog /var/log/apache2/triage-access.log combined
+    ErrorLog /var/log/apache2/triage-error.log
+
+    Alias "/event/data" "/var/lib/fti/triage/data"
+        
+    # OpenID Configuration
+	  OIDCOAuthIntrospectionEndpoint https://${subdomain}.ats-ibis.com/auth/realms/triage/protocol/openid-connect/token/introspect
+	  OIDCOAuthIntrospectionEndpointParams token_type_hint=access_token
+	  OIDCOAuthClientID triage-client
+	  OIDCOAuthClientSecret ${client_secret}
+
+    <Location /event/data>
+      AuthType oauth20
+      Require valid-user
+    </Location>
+
+    RewriteEngine on
+    RewriteCond %%{REQUEST_METHOD} ^(TRACE|TRACK|CONNECT|OPTIONS|HEAD)
+    RewriteRule .* - [L,R=405]
+
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+
+    ProxyPreserveHost On
+
+    ProxyPass /auth "https://triage-keycloak:8080/auth"
+    ProxyPassReverse /auth "https://triage-keycloak:8080/auth"
+    ProxyPass /api/v1 "http://localhost:8000"
+    ProxyPassReverse /api/v1 "http://localhost:8000"
+
+    # For most configuration files from conf-available/, which are
+    # enabled or disabled at a global level, it is possible to
+    # include a line for only one particular virtual host. For example the
+    # following line enables the CGI configuration for this host only
+    # after it has been globally disabled with "a2disconf".
+    #Include conf-available/serve-cgi-bin.conf
+
+</VirtualHost>

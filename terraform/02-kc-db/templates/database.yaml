@@ -1,0 +1,15 @@
+#cloud-config
+write_files:
+- path: /etc/pgbackrest/pgbackrest.conf
+  encoding: b64
+  content: | 
+    ${pgbackrest_cfg}
+  permissions: '0644'
+- path: /etc/cron.d/pgbackrest
+  append: true
+  encoding: b64
+  content: | 
+    ${pgbackrest_cron}
+  permissions: '0644'
+runcmd:
+- sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c ssm:/cloudwatch-agent/triage-db-config

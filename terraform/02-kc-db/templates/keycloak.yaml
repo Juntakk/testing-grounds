@@ -1,0 +1,16 @@
+#cloud-config
+package-update: true
+#package-upgrade: true
+write_files:
+- path: /etc/hosts
+  append: true
+  content: |
+    ${triage_db}  triage-db
+runcmd:
+- sleep 120
+#- sudo /opt/keycloak/bin/kc.sh import --file /opt/keycloak/data/import/triage_realm.json
+- sudo sed -i "s/build/${agency_name}/" /usr/local/bin/keycloak.sh
+- sudo chown -R keycloak:keycloak /opt/keycloak/data
+- sleep 30
+- sudo systemctl restart keycloak.service
+- sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c ssm:/cloudwatch-agent/triage-kc-config 

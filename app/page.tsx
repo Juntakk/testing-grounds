@@ -19,6 +19,9 @@ export default function Home() {
       <Button variant="main" asChild>
         <Link href="/tests/meals">Meals</Link>
       </Button>
+      <Button variant="main" asChild>
+        <Link href="/tests/deployment">Deployment</Link>
+      </Button>
     </div>
   );
 }
