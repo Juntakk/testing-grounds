@@ -22,6 +22,9 @@ export default function Home() {
       <Button variant="main" asChild>
         <Link href="/tests/deployment">Deployment</Link>
       </Button>
+      <Button variant="main" asChild>
+        <Link href="/tests/accordion">Accordion</Link>
+      </Button>
     </div>
   );
 }
